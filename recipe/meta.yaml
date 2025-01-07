@@ -1,6 +1,5 @@
 {% set name = "pyexr" %}
 {% set version = "0.4.0" %}
-{% set python_min = python_min|default("3.8") %}
 
 package:
   name: {{ name|lower }}
@@ -11,7 +10,7 @@ source:
   sha256: c8e222439af5622c24f322fea548e051654796e152dcc9666ccbd1627822d126
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
 

@@ -1,5 +1,5 @@
 {% set name = "pyexr" %}
-{% set version = "0.4.0" %}
+{% set version = "0.5.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pyexr-{{ version }}.tar.gz
-  sha256: c8e222439af5622c24f322fea548e051654796e152dcc9666ccbd1627822d126
+  sha256: 674610760808ca4ee088bfdeb6bd338deb9f4bcf5a9e8adc6567ed747e48f98d
 
 build:
-  number: 1
+  number: 0
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
 

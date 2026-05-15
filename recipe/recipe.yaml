@@ -1,0 +1,56 @@
+schema_version: 1
+
+context:
+  name: pyexr
+  version: "0.5.0"
+  python_min: "3.10"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/p/pyexr/pyexr-${{ version }}.tar.gz
+  sha256: 674610760808ca4ee088bfdeb6bd338deb9f4bcf5a9e8adc6567ed747e48f98d
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - pip
+    - poetry-core
+    - poetry-dynamic-versioning
+    - python ${{ python_min }}.*
+  run:
+    - python >=${{ python_min }}
+    - numpy
+    - openexr-python
+
+tests:
+  - python:
+      imports:
+        - pyexr
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - script:
+      - python run_test.py
+    files:
+      recipe:
+        - run_test.py
+    requirements:
+      run:
+        - python ${{ python_min }}.*
+
+about:
+  homepage: https://github.com/tvogels/pyexr
+  repository: https://github.com/tvogels/pyexr
+  summary: A simple EXR IO-library for Python that simplifies the use of OpenEXR
+  license: MIT
+  license_file: LICENSE.md
+
+extra:
+  recipe-maintainers:
+    - jeongseok-meta
